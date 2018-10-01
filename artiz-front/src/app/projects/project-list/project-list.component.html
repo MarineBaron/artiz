@@ -1,0 +1,24 @@
+<h2>{{ title }}</h2>
+<table *ngIf="projects.length" class="table table-hover">
+  <thead>
+    <tr>
+      <th>Nom</th>
+      <th>Artisan</th>
+      <th>Client</th>
+      <th></th>
+    </tr>
+    <tbody>
+      <tr *ngFor="let project of projects">
+        <td>{{ project.name }}<span *ngIf="project.isErpSync"> <em> (synchronisé)</em></span></td>
+        <td>{{ project.artisan.name }} ({{ project.artisan.username }})</td>
+        <td>{{ project.client.name }}({{ project.client.username }})<span *ngIf="project.client.isErpSync"><em> (synchronisé)</em></span></td>
+        <td>
+          <button class="btn btn-primary" routerLink="{{ '/project/' + project.id }}">Voir</button>
+        </td>
+      </tr>
+  </tbody>
+</table>
+<hr />
+<p>
+  <button *ngIf="isAuthAdd" class="btn btn-primary" routerLink="/projects/add">Ajouter</button>
+</p>

@@ -1,0 +1,22 @@
+<h2>{{ title }}</h2>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Identifiant</th>
+      <th>Nom</th>
+      <th>Email</th>
+      <th>Role</th>
+      <th></th>
+    </tr>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{ user.username }}</td>
+        <td>{{ user.name }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.role }}</td>
+        <td>
+          <button class="btn btn-primary" routerLink="{{ '/user/' + user.id }}">Voir</button>
+        </td>
+      </tr>
+  </tbody>
+</table>

@@ -1,0 +1,59 @@
+version: '3.1'
+
+services:
+
+  db:
+    build: ./db
+    environment:
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - ./db/data:/var/lib/postgresql/data
+
+  adminer:
+    image: adminer
+    ports:
+      - 8080:8080
+
+  artiz-back:
+    build: ./artiz-back
+    ports:
+     - 8081:3000
+    volumes:
+      - ./artiz-back/src:/usr/src/app/src
+    depends_on:
+     - db
+
+  artiz-front:
+    build: ./artiz-front
+    ports:
+     - 8082:4200
+     - 49153:49153
+    volumes:
+      - ./artiz-front/src:/usr/src/app/src
+    depends_on:
+     - artiz-back
+
+  dolibarr:
+    build: ./dolibarr
+    depends_on:
+      - db
+    ports:
+      - 8083:80
+    volumes:
+      - ./dolibarr/www:/var/www
+      - ./dolibarr/init/htdocs/custom:/usr/src/dolibarr/htdocs/custom
+      - ./dolibarr/init/scripts/custom:/usr/src/dolibarr/scripts/custom
+      - ./dolibarr/init/init:/usr/src/dolibarr/init
+    depends_on:
+      - db
+      - artiz-back
+    links:
+      - artiz-back
+
+  cypress:
+    build:
+      context: ./artiz-front
+      dockerfile: Dockerfile-cypress
+    depends_on:
+      - artiz-front
+    network_mode: 'host'

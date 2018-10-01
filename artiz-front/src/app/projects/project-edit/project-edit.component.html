@@ -1,0 +1,50 @@
+<h2>{{ title }}</h2>
+<div *ngIf="isNew || project.id" class="row justify-content-center">
+  <div class="col-sm-8">
+    <form [formGroup]="projectForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="name">Nom: </label>
+        <input id="name"
+          type="text"
+          class="form-control"
+          formControlName="name" >
+      </div>
+      <div *ngIf="isNew && user.role !== 'artisan'" class="form-group">
+        <label for="artisan">Artisan: </label>
+        <select id="artisan"
+          class="form-control"
+          formControlName="artisan" >
+          <option *ngFor="let user of artisans" value="{{ user.id }}">{{ user.name }} ({{ user.username }})</option>
+        </select>
+      </div>
+      <div *ngIf="isNew && user.role !== 'client'" class="form-group">
+        <label for="client">Client: </label>
+        <select id="client"
+          class="form-control"
+          formControlName="client" >
+          <option *ngFor="let user of clients" value="{{ user.id }}">{{ user.name }} ({{ user.username }})</option>
+        </select>
+      </div>
+      <div *ngIf="!isNew && project.artisan" class="form-group">
+        <label>Artisan: </label>
+        {{ project.artisan.name }} ({{ project.artisan.username }})
+      </div>
+      <div *ngIf="!isNew && project.artisan" class="form-group">
+        <label>Client: </label>
+         {{ project.client.name }}({{ project.client.username }})
+      </div>
+      <button type="submit"
+        class="btn btn-primary"
+        [disabled]="projectForm.invalid">
+        Enregistrer
+      </button>
+    </form>
+    <p class="text-danger">{{ errorMessage }}</p>
+  </div>
+</div>
+<hr />
+<app-product-list *ngIf="project.products" [products]="project.products" [edit]="true"></app-product-list>
+<hr />
+<p>
+  <button *ngIf="isAuthEdit" class="btn btn-primary" (click)="productsCreate()">Ajouter 5 produits</button>
+</p>

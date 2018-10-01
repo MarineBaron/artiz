@@ -1,0 +1,19 @@
+{
+    "name": "artiz-back",
+    "dependencies": {
+        "bcrypt": "^3.0.0",
+        "body-parser": "^1.18.3",
+        "cors": "^2.8.4",
+        "express": "^4.16.3",
+        "express-jwt": "^5.3.1",
+        "jsonwebtoken": "^8.3.0",
+        "morgan": "^1.9.0",
+        "pg": "^7.4.3",
+        "pg-hstore": "^2.3.2",
+        "sequelize": "^4.38.0"
+    },
+    "scripts": {
+        "start": "nodemon ./src/bin/www",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    }
+}

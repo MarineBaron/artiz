@@ -1,0 +1,14 @@
+
+# ################ artiz-front & artiz-back
+
+**/node_modules
+
+
+# ################  dolibarr
+
+/dolibarr/www/*
+
+
+# ################ pgsql
+/db/data
+/db/backup/*.sql

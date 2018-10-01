@@ -1,0 +1,22 @@
+<h3>{{ title }}</h3>
+<table *ngIf="products.length" class="table table-hover">
+  <thead>
+    <tr>
+      <th>Description</th>
+      <th>Prix</th>
+      <th>TVA</th>
+      <th>Quantité</th>
+      <th *ngIf="edit"></th>
+    </tr>
+    <tbody>
+      <tr *ngFor="let product of products; let i = index">
+        <td>{{ product.description }}</td>
+        <td>{{ product.price }}</td>
+        <td>{{ product.tva_tx }}</td>
+        <td>{{ product.qty }}</td>
+        <td *ngIf="edit">
+          <button class="btn btn-danger" (click)="onDelete(i)">Supprimer</button>
+        </td>
+      </tr>
+  </tbody>
+</table>

@@ -1,0 +1,52 @@
+<h2>{{ title }}</h2>
+<div class="row justify-content-center">
+  <div class="col-sm-8">
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="username">Identifiant</label>
+        <input id="username"
+          type="text"
+          class="form-control"
+          formControlName="username" >
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input id="email"
+          type="text"
+          class="form-control"
+          formControlName="email" >
+      </div>
+      <div class="form-group">
+        <label for="name">Nom</label>
+        <input id="name"
+          type="text"
+          class="form-control"
+          formControlName="name" >
+      </div>
+      <div *ngIf="user.role === 'artisan'" class="form-group">
+        <label for="erpapikey">ERP API Key</label>
+        <input id="erpapikey"
+          type="text"
+          class="form-control"
+          formControlName="erpapikey" >
+      </div>
+      <input *ngIf="user.role !== 'artisan'"
+        id="erpapikey"
+        type="hidden"
+        formControlName="erpapikey" >
+      <div class="form-group">
+        <label for="password">Mot de passe (laisser vide pour ne pas changer)</label>
+        <input id="password"
+          type="password"
+          class="form-control"
+          formControlName="password" >
+      </div>
+      <button type="submit"
+        class="btn btn-primary"
+        [disabled]="userForm.invalid">
+        Enregistrer
+      </button>
+    </form>
+    <p class="text-danger">{{ errorMessage }}</p>
+  </div>
+</div>

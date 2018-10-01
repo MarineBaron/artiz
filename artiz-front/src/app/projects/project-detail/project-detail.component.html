@@ -1,0 +1,26 @@
+<h2>{{ title }}</h2>
+<div *ngIf="project && project.id">
+    <div><b>Nom : </b>{{ project.name }}</div>
+    <div *ngIf="isErpAllSync"><em>synchronisé</em></div>
+    <div><b>Artisan : </b>{{ project.artisan.name }} ({{ project.artisan.username }})</div>
+    <div><b>Client : </b>{{ project.client.name }} ({{ project.artisan.username }})</div>
+  <hr />
+  <div>
+    <app-product-list [products]="project.products" [edit]="false"></app-product-list>
+  </div>
+  <hr />
+  <div *ngIf="status === 'ok'">
+    <button *ngIf="isAuthEdit" class="btn btn-primary" routerLink="edit">Editer</button>
+    <button *ngIf="isAuthEdit" class="btn btn-danger" (click)="onDelete()">Supprimer</button>
+    <button *ngIf="!isErpAllSync" class="btn btn-success" (click)="onSyncErp()">Synchroniser</button>
+    <button *ngIf="(isAuthSync || project.isErpSync) && project.erpId && !fileDownloaded" class="btn btn-secondary" (click)="onGetPdf()">Générer PDF</button>
+    <a *ngIf="fileDownloaded" class="btn btn-secondary" [href]="fileHref" [download]="fileDownload">Télécharger le PDF</a>
+  </div>
+  <div *ngIf="status === 'loading'">
+    Veuillez patienter...
+  </div>
+  <div *ngIf="status === 'error'">
+    Une erreur est survenue...
+    <a (click)="onStopError()">Réessayer</a>
+  </div>
+</div>

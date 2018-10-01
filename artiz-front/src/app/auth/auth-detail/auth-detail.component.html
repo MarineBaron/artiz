@@ -1,0 +1,15 @@
+<h2>{{ title }}</h2>
+  <div *ngIf="user">
+    <div><b>Identifiant : </b>{{ user.username }}</div>
+    <div><b>Nom : </b>{{ user.name }}</div>
+    <div><b>Email : </b>{{ user.email }}</div>
+    <div><b>Rôle : </b>{{ user.role }}</div>
+    <div *ngIf="user.erpapikey && user.erpapikey.length">
+      <b>ERP API Key : </b>{{ user.erpapikey }}
+    </div>
+  </div>
+<hr />
+<div>
+  <button *ngIf="isAuthEdit" class="btn btn-primary" routerLink="edit">Editer</button>
+  <button *ngIf="isAuthDelete" class="btn btn-danger" (click)="onDelete()">Supprimer</button>
+</div>

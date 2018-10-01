@@ -1,0 +1,21 @@
+/* Specific css for <Alert Type> */
+.alertsContainer .alertsRow.<Alert Type>  {
+  border: 1px solid #ffc549;
+}
+.alertsContainer .alertsRow.<Alert Type> .iconpanel {
+  background:#ffc549;
+  color: #fff;
+}
+.alertsContainer .alertsRow.<Alert Type> .messagepanel {
+  color: #000;
+  background: #fff;
+}
+.alertsContainer .alertsRow.<Alert Type> .closeicon {
+  color: #000;
+}
+.alertsContainer .alertsRow.<Alert Type> .closeicon a {
+  color: #000;
+  text-decoration: none;
+  font-size: 12px;
+}
+/* Specific css for <Alert Type> */
